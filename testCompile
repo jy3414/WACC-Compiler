@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Ruby front-end for your compiler.
+# You are free to change the language used for this script,
+# but do *not* change its name.
+
+puts `java -cp bin:lib/antlr-4.4-complete.jar WACC/Main #{ARGV[0]}`
+puts `arm-linux-gnueabi-gcc -o FILENAME1 -mcpu=arm1176jzf-s -mtune=arm1176jzf-s testFile.s`
+puts `qemu-arm -L /usr/arm-linux-gnueabi/ FILENAME1`
+print "EXIT CODE:\n"
+print "#{$?.exitstatus}\n"
+exit $?.exitstatus
+
+
+
